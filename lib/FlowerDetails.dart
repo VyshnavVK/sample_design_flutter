@@ -1,16 +1,19 @@
+import 'dart:io';
+
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:sample_design/Model/Model.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class FlowerDetails extends StatelessWidget {
   final Model model;
   final BuildContext context;
-  const FlowerDetails(this.context, this.model) ;
 
+  const FlowerDetails(this.context, this.model);
 
   @override
   Widget build(BuildContext context) {
-
+    if (Platform.isAndroid) WebView.platform = AndroidWebView();
     var screenSize = MediaQuery.maybeOf(context)!.size;
     return Scaffold(
       backgroundColor: Colors.green[200],
@@ -19,30 +22,28 @@ class FlowerDetails extends StatelessWidget {
         child: Column(
           children: [
             Stack(
-              children:  [
-                 Blur(
+              children: [
+                Blur(
                   blur: 2.5,
                   child: AspectRatio(
                       aspectRatio: 16 / 7,
                       child: Image(
                         fit: BoxFit.cover,
                         width: double.infinity,
-                        image: NetworkImage(
-                            model.image),
+                        image: NetworkImage(model.image),
                       )),
                 ),
                 Center(
                   child: Padding(
                       padding: EdgeInsets.only(
-                        top: screenSize.width*0.2,
+                        top: screenSize.width * 0.2,
                       ),
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
-                        radius: screenSize.width*0.2,
+                        radius: screenSize.width * 0.18,
                         child: CircleAvatar(
-                          backgroundImage:  NetworkImage(
-                            model.image),
-                          radius: screenSize.width*0.15,
+                          backgroundImage: NetworkImage(model.image),
+                          radius: screenSize.width * 0.15,
                         ),
                       )),
                 ),
@@ -67,12 +68,18 @@ class FlowerDetails extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 model.message,
-                style: TextStyle(
-                    color: Colors.green[900],
+                style:const TextStyle(
+                    color: Colors.green,
                     fontSize: 15,
                     fontWeight: FontWeight.w500),
               ),
             ),
+           /* Container(
+              padding: const EdgeInsets.all(30),
+              child: WebView(
+                initialUrl: "https://www.google.com/search?q=${model.title}",
+              ),
+            )*/
           ],
         ),
       ),

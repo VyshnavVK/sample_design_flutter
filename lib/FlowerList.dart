@@ -11,10 +11,7 @@ class FlowerList extends StatefulWidget {
 }
 
 class _FlowerListState extends State<FlowerList> {
-
   List<Model> list = FlowerData().getList();
-
-
 
   Widget getViewForList(var i) {
     return Card(
@@ -88,7 +85,13 @@ class _FlowerListState extends State<FlowerList> {
             const SizedBox(
               width: 30,
             ),
-            Text(list[i].title,style: TextStyle(color: Colors.blue[900],fontSize: 25,fontWeight: FontWeight.w500),),
+            Text(
+              list[i].title,
+              style: TextStyle(
+                  color: Colors.blue[900],
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500),
+            ),
           ],
         ),
       ),
@@ -110,9 +113,16 @@ class _FlowerListState extends State<FlowerList> {
               physics: const NeverScrollableScrollPhysics(),
               itemCount: FlowerData().getList().length,
               itemBuilder: (context, i) {
-                return GestureDetector(child: getViewForList(i),onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder:(context) => FlowerDetails(context,list[i])));
-                },);
+                return GestureDetector(
+                  child: getViewForList(i),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                FlowerDetails(context, list[i])));
+                  },
+                );
               },
             ),
             GridView.builder(
@@ -122,9 +132,16 @@ class _FlowerListState extends State<FlowerList> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2, crossAxisSpacing: 5, mainAxisSpacing: 3),
                 itemBuilder: (context, i) {
-                  return GestureDetector(child: getViewForGrid(i),onTap:(){
-                  Navigator.push(context, MaterialPageRoute(builder:(context) => FlowerDetails(context,list[i])));
-                  },);
+                  return GestureDetector(
+                    child: getViewForGrid(i),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  FlowerDetails(context, list[i])));
+                    },
+                  );
                 }),
           ],
         ),
@@ -132,5 +149,3 @@ class _FlowerListState extends State<FlowerList> {
     );
   }
 }
-
-

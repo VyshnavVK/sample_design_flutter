@@ -19,14 +19,14 @@ class _SecondPageState extends State<SecondPage> {
   }
 
   void _showSnack(var text) {
-    setState(() {
+ /*   setState(() {
       var snackBar = SnackBar(
           content: Text(
             "$text",
             style: const TextStyle(color: Colors.white, fontSize: 24),
           ));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    });
+    });*/
     Navigator.push(context, MaterialPageRoute(builder:(context) =>const FlowerList()));
   }
 
