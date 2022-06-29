@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:sample_design/Model/Model.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import 'ShowInBrowser.dart';
+
 class FlowerDetails extends StatelessWidget {
   final Model model;
   final BuildContext context;
@@ -68,18 +70,80 @@ class FlowerDetails extends StatelessWidget {
               padding: const EdgeInsets.only(left: 10),
               child: Text(
                 model.message,
-                style:const TextStyle(
+                style: const TextStyle(
                     color: Colors.green,
                     fontSize: 15,
                     fontWeight: FontWeight.w500),
               ),
             ),
-           /* Container(
-              padding: const EdgeInsets.all(30),
-              child: WebView(
-                initialUrl: "https://www.google.com/search?q=${model.title}",
+            Row(children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 25),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowInBrowser(context,
+                            "https://www.google.com/search?q=${model.title}"),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: SizedBox(
+                        width: 25,
+                        height: 25,
+                        child: Image.asset("assets/icons/google.png")),
+                  ),
+                ),
               ),
-            )*/
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 25),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowInBrowser(context,
+                            "https://www.bing.com/search?q=${model.title}"),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: SizedBox(
+                        width: 25,
+                        height: 25,
+                        child: Image.asset("assets/icons/bing.jpg")),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, left: 25),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowInBrowser(context,
+                            "https://duckduckgo.com/?q=${model.title}"),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.white,
+                    child: SizedBox(
+                        width: 30,
+                        height: 30,
+                        child: Image.asset("assets/icons/duckduckgo.jpg")),
+                  ),
+                ),
+              ),
+            ]),
           ],
         ),
       ),
